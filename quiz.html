@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title></title>
+</head>
+<body>
+  <h1>ポケモンクイズ</h1>
+  
+  <p>第 n 問</p>
+  
+  <p id="question"></p>
+  
+  <ul>
+    <li><button id="answer00">0</button></li>
+    <li><button id="answer01">1</button></li>
+    <li><button id="answer02">2</button></li>
+  </ul>
+  
+  <p>結果</p>
+  <p id="result"></p>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <script>
+
+  const quiz = [
+    {
+      question: "「オーキド博士」のフルネームは？？",
+      answers: ["オーキド・ヒロユキ", "オーキド・ユキナリ", "オーキド・ユキヒロ"],
+      correct: 1,
+    },
+    {
+      question: "ポケモンの映画「水の都の護神ラティアスとラティオス」のモデルとなった舞台はどこ？？",
+      answers: ["ローマ", "ヴェネチア", "ミラノ"],
+      correct: 1,
+    },
+    {
+      question: "初代御三家の中で最終進化する時のレベルが一匹だけ違います．どれか",
+      answers: ["フシギダネ", "ヒトカゲ", "ゼニガメ"],
+      correct: 0,
+    },
+    {
+      question: "ゲーム中ポケモンをゲットする時、より捕獲の確立が高くなるの状態異常は下のうちどれ．",
+      answers: ["まひ", "どく", "こおり"],
+      correct: 2,
+    },
+    {
+      question: "アニメでサトシがゲットしたポケモンで一番最初に別れたポケモンは？",
+      answers: ["ゼニガメ", "リザードン", "バタフリー"],
+      correct: 2,
+    },
+    {
+      question: "パルキアvsディアルガvs",
+      answers: ["ダークライ", "レックウザ", "レジギガス"],
+      correct: 0,
+    },
+  ];
+
+  // 1. 結果記録用の配列を用意
+  const result = [];
+
+  // 2. 問題文の表示
+  $("#question").text(quiz[result.length].question);
+
+  // 3. 選択肢の表示
+  $("#question").text(quiz[result.length].question);
+  $("#answer00").text(quiz[result.length].answers[0]);
+  $("#answer01").text(quiz[result.length].answers[1]);
+  $("#answer02").text(quiz[result.length].answers[2]);
+
+  // 4. `value`の設定
+  $("#answer00").val(0);
+  $("#answer01").val(1);
+  $("#answer02").val(2);
+
+  $("button").on("click", function (e) {
+    if (Number(e.target.value) === quiz[result.length].correct) {
+      $("#result").text("正解！！！");
+      // 結果を配列に追加
+      result.push("ok");
+    } else {
+      $("#result").text("不正解．．．");
+      // 結果を配列に追加
+      result.push("ng");
+    }
+    // 問題文と選択肢を更新
+    $("#question").text(quiz[result.length].question);
+    $("#answer00").text(quiz[result.length].answers[0]);
+    $("#answer01").text(quiz[result.length].answers[1]);
+    $("#answer02").text(quiz[result.length].answers[2]);
+  });
+
+  </script>
+</body>
+</html>
